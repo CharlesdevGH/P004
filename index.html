@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>RUC rápido</title>
+  <meta name="theme-color" content="#0b0e1a">
+  <!-- Rutas relativas: funcionan en GitHub Pages aunque el sitio viva en /nombre-repo/ -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Widget flotante -->
+  <main class="widget" id="widget" aria-label="Gestor de RUC">
+
+    <!-- Barra superior: al pulsarla se contrae o expande el panel -->
+    <header class="widget__bar">
+      <button type="button" class="widget__toggle" id="toggleBtn"
+              aria-expanded="true" aria-controls="widgetBody">
+        <span class="widget__title">RUC rápido</span>
+        <span class="widget__count" id="count">0</span>
+        <svg class="widget__chevron" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <!-- Fijar encima de otras ventanas (solo se muestra si el navegador lo permite) -->
+      <button type="button" class="widget__pin" id="pinBtn" hidden
+              title="Fijar encima de otras ventanas" aria-label="Fijar encima de otras ventanas">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 17v5"/>
+          <path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Cuerpo contraíble -->
+    <section class="widget__body" id="widgetBody">
+      <div class="widget__inner">
+        <div class="panel">
+          <input type="search" id="search" class="search" autocomplete="off"
+                 placeholder="Buscar razón social o RUC" aria-label="Buscar razón social o RUC">
+          <ul class="list" id="list" aria-live="polite"></ul>
+          <p class="empty" id="empty" hidden></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Aviso de copiado -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
